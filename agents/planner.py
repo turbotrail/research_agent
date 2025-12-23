@@ -1,4 +1,4 @@
-from core.ollama_client import ollama
+from core.ollama_client import llm_call
 import json
 import re
 from core.utils import safe_json_load
@@ -20,7 +20,7 @@ Topic:
 {topic}
 """
 
-    response = ollama(prompt, temperature=0)
+    response = llm_call(prompt, agent="planner")
     response = response.strip()
     response = response.replace("```json", "").replace("```", "")
     try:

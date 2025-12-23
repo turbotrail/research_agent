@@ -26,9 +26,9 @@ Designed for **deep technical and scientific research**, not shallow summaries.
 |---|---|
 | Query planning | llama3.2:1b |
 | Contradiction detection | llama3.2:1b |
-| Final synthesis | qwen2.5:7b |
+| Final synthesis | gemma3:4b |
 
-> ⚠️ Small models (1B) are **not suitable** for deep physics or math-heavy synthesis (e.g. Bell’s theorem). Use them only for planning or classification.
+> ⚠️ Small models (1B) are **not suitable** for deep physics or math-heavy synthesis . Use them only for planning or classification.
 
 ---
 
@@ -71,8 +71,8 @@ pip install -r requirements.txt
 ### 2️⃣ Install & run Ollama
 
 ```bash
-ollama pull qwen2.5:7b
 ollama pull llama3.2:1b
+ollama pull gemma3:4b
 ollama serve
 ```
 
@@ -87,7 +87,7 @@ export OLLAMA_HOST=http://<OLLAMA_IP>:11434
 ### 3️⃣ Run the research agent
 
 ```bash
-MODEL=qwen2.5:7b python async_run.py
+MODEL=gemma3:4b python async_run.py
 ```
 
 Example input:

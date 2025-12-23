@@ -1,4 +1,4 @@
-from core.ollama_client import ollama
+from core.ollama_client import llm_call
 import itertools
 
 def detect_contradictions(facts):
@@ -17,7 +17,7 @@ Statement B:
 Answer ONLY as JSON:
 {{"contradiction": true/false, "reason": "..."}}
 """
-        resp = ollama(prompt, temperature=0)
+        resp = llm_call(prompt, agent="contradiction")
         if '"contradiction": true' in resp:
             contradictions.append({
                 "a": a,

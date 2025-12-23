@@ -1,4 +1,4 @@
-from core.ollama_client import ollama
+from core.ollama_client import llm_call
 from core.utils import safe_json_load
 
 def synthesize(topic, sources):
@@ -31,7 +31,7 @@ Sources:
 {joined}
 """
 
-    response = ollama(prompt, temperature=0.2)
+    response = llm_call(prompt, agent="synthesizer")
 
     # --- HARDENING ---
     response = response.strip()

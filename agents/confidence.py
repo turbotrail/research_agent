@@ -1,27 +1,70 @@
+import json
+from core.ollama_client import llm_call
+from core.utils import safe_json_load
+
+
 def score_facts(facts):
-    domain_weight = {
-        ".gov": 0.9,
-        ".edu": 0.85,
-        ".org": 0.75
-    }
+    """
+    Score factual confidence using an LLM agent.
 
-    scored = []
-    for f in facts:
-        score = 0.5
+    Input:
+    facts = [
+        { "claim": "...", "source": "url" }
+    ]
 
-        for d, w in domain_weight.items():
-            if d in f["source"]:
-                score += w * 0.3
+    Output:
+    [
+        {
+          "claim": "...",
+          "source": "...",
+          "confidence": 0.0–1.0,
+          "reasoning": "..."
+        }
+    ]
+    """
 
-        if len(f["claim"]) > 120:
-            score += 0.1
+    if not facts:
+        return []
 
-        if any(w in f["claim"].lower() for w in ["may", "might", "could"]):
-            score -= 0.1
+    prompt = f"""
+You are a fact verification assistant.
 
-        scored.append({
-            **f,
-            "confidence": round(min(score, 1.0), 2)
-        })
+For each factual claim below, assign a confidence score between 0.0 and 1.0.
 
-    return scored
+Base your score on:
+- Reliability of the source
+- Specificity of the claim
+- Certainty of language
+- General scientific or factual plausibility
+
+Return ONLY valid JSON in this exact format:
+
+[
+  {{
+    "claim": "...",
+    "source": "...",
+    "confidence": 0.0,
+    "reasoning": "short explanation"
+  }}
+]
+
+Facts:
+{json.dumps(facts, indent=2)}
+"""
+
+    response = llm_call(prompt, agent="confidence")
+
+    response = response.strip().replace("```json", "").replace("```", "")
+
+    try:
+        return safe_json_load(response)
+    except Exception:
+        # Graceful fallback: mark confidence as unknown
+        return [
+            {
+                **f,
+                "confidence": None,
+                "reasoning": "LLM confidence scoring failed"
+            }
+            for f in facts
+        ]
