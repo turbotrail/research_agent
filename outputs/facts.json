@@ -1,0 +1,27 @@
+[
+  {
+    "claim": "Bell's theorem demonstrated that quantum mechanics predicts stronger statistical correlations in measurements of entangled particles than any local realistic theory could.",
+    "source": "Source (https://grokipedia.com/page/Quantum_entanglement)",
+    "confidence": 0.5
+  },
+  {
+    "claim": "Experiments starting with John Clauser and Alain Aspect in the 1970s and 1980s confirmed quantum predictions by violating Bell inequalities, solidifying entanglement as a real and non-local feature of nature.",
+    "source": "Source (https://grokipedia.com/page/John_Stewart_Bell)",
+    "confidence": 0.6
+  },
+  {
+    "claim": "Bell's theorem challenged the principle of locality, which states that an object can be influenced only by its immediate surroundings.",
+    "source": "Source (https://csus.libguides.com/c.php?g=768198)",
+    "confidence": 0.6
+  },
+  {
+    "claim": "The discovery has profound implications for quantum technologies, including quantum computing and quantum cryptography.",
+    "source": "Source (https://www.quantamagazine.org/how-bells-theorem-proved-spooky-action-at-a-distance-is-real-20210720/)",
+    "confidence": 0.72
+  },
+  {
+    "claim": "The demise of local realism has made a lot of people very angry and has been widely regarded as a bad move.",
+    "source": "Source (https://www.scientificamerican.com/article/the-universe-is-not-locally-real-and-the-physics-nobel-prize-winners-proved-it/)",
+    "confidence": 0.5
+  }
+]

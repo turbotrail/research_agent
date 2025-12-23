@@ -1,0 +1,7 @@
+ddgs
+requests
+beautifulsoup4
+trafilatura
+rich
+aiohttp
+asyncio
